@@ -1,6 +1,7 @@
 //setup connection ---------------------
 const pg = require('pg');
-const dbURI = "postgres://yacyidmbuohcsc:e4c8cb98d1fdf82233e9469fc44aea2b9bcd5febec9c491f8c0fdc3f91225834@ec2-54-72-155-238.eu-west-1.compute.amazonaws.com:5432/dfm0aa91i3jh7m";
+const dbURI = "postgres://jlpjzmkfcwxgfa:da48aedd015f3dabc38773136eb7ff0745a414d95cbf7a9c607f75a12c1a090e@ec2-52-31-219-113.eu-west-1.compute.amazonaws.com:5432/dd7qf9370fk6to
+";
 const connstring = process.env.DATABASE_URL || dbURI;
 const pool = new pg.Pool({
 	connectionString: connstring,

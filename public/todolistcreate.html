@@ -7,9 +7,11 @@
   </head>
   <body>
     <!----------- HTML-elements -------------->
-    <input id="inpHeading" type="text" /><br />
-    <textarea id="inpTodoList" cols="80" rows="10"></textarea><br />
-    <button id="btnAdd">Add to list</button><br />
+
+    <input id="inpHeading" type="text"/><br>
+    <textarea id="inpTodoList" cols="80" rows="10"></textarea><br>
+    <button id="btnAdd">Add to list</button><br>
+
     <h3 id="txtResult">Result...</h3>
 
     <!------------- JavaScript --------------->
@@ -19,8 +21,10 @@
       let btnAdd = document.getElementById("btnAdd");
       let txtResult = document.getElementById("txtResult");
 
+
       btnAdd.addEventListener("click", async function (evt) {
         let url = "/todolists";
+
 
         let updata = {
           heading: inpHeading.value,
