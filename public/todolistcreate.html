@@ -1,68 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todolistcreate</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <!----------- HTML-elements -------------->
-    <input id="inpHeading" type="text"/><br>
-    <textarea id="inpTodoList" cols="80" rows="10"></textarea><br>
-    <button id="btnCreate">Create post</button><br>
+    <input id="inpHeading" type="text" /><br />
+    <textarea id="inpTodoList" cols="80" rows="10"></textarea><br />
+    <button id="btnAdd">Add to list</button><br />
     <h3 id="txtResult">Result...</h3>
-        
+
     <!------------- JavaScript --------------->
     <script>
+      let inpHeading = document.getElementById("inpHeading");
+      let inpTodoList = document.getElementById("inpTodoList");
+      let btnAdd = document.getElementById("btnAdd");
+      let txtResult = document.getElementById("txtResult");
 
-        let inpHeading= document.getElementById('inpHeading');
-        let inpTodoList= document.getElementById('inpTodoList');
-        let btnCreate= document.getElementById('btnCreate');
-        let txtResult= document.getElementById('txtResult');
+      btnAdd.addEventListener("click", async function (evt) {
+        let url = "/todolists";
 
-        btnCreate.addEventListener('click', async function(evt) {
-            let url = "/todolists";
+        let updata = {
+          heading: inpHeading.value,
+          blogtext: inpTodoList.value,
+        };
 
-            let updata = {
-                heading: inpHeading.value,
-                blogtext: inpTodoList.value
-            }
+        let cfg = {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(updata),
+        };
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
 
-            let cfg = {
-                method:"POST", 
-                headers: {"content-type":"application/json"},
-                body: JSON.stringify(updata)
-            }
-            try{
-                let response = await fetch(url, cfg);
-                let data = await response.json();
-                
-                if(response.status != 200){
-                    throw data.err;
-                }
-                txtResult.innerHTML= data.msg;
-            }
-            catch (err){
-                console.log(err);
-                txtResult.innerHTML= "Something went wrong - check the console window";
-            }
-        });
-        
-        
-
+          if (response.status != 200) {
+            throw data.err;
+          }
+          txtResult.innerHTML = data.msg;
+        } catch (err) {
+          console.log(err);
+          txtResult.innerHTML =
+            "Something went wrong - check the console window";
+        }
+      });
     </script>
 
     <!---------------- CSS ------------------->
-    <style>        
-
-    #container > div > img{
+    <style>
+      #container > div > img {
         max-width: 200px;
         max-height: 200px;
-    }
+      }
+
+      #btnAdd {
+        background-color: #0f0e0e;
+        color: white;
+        padding: 14px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 15px;
+      }
+
+      #btnAdd:hover {
+        background-color: rgb(102, 101, 101);
+      }
 
     </style>
-
-</body>
-
+  </body>
 </html>
