@@ -66,6 +66,13 @@ dbMethods.deleteTodoListItem = function(id){
       return pool.query(sql,values);
   } 
   //------
+  dbMethods.createUser = function(username, password, salt) {  
+    let sql = "INSERT INTO users (id, username, password, salt) VALUES(DEFAULT, $1, $2, $3) returning *";
+	let values = [username, password, salt];	
+    return pool.query(sql, values); //return the promise
+}
+
+//--------------
    dbMethods.deleteUser = function(id){
        let sql ="DELETE  FROM users WHERE id = $1 RETURNING";
        let values = [id];
