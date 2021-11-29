@@ -13,6 +13,12 @@ let dbMethods = {}; //create empty object
 
 //Get List
 
+dbMethods.getUserLists = function(userid){
+    let sql = "SELECT * FROM todoliste WHERE userid = $1";
+    let values = [userid];
+    return pool.query(sql, values);
+}
+
 dbMethods.getAllTodoLists = async function(){
     let sql = "SELECT * FROM todoliste";
     return pool.query(sql); //return the promise
@@ -62,9 +68,9 @@ dbMethods.deleteTodoListItem = function(id){
  //---------
   dbMethods.getUser= function(username){
       let sql = "select * From users WHERE username =$1";
-      let values =[username,password, salt];
+      let values =[username];
       return pool.query(sql,values);
-  } 
+  }
   //------
   dbMethods.createUser = function(username, password, salt) {  
     let sql = "INSERT INTO users (id, username, password, salt) VALUES(DEFAULT, $1, $2, $3) returning *";

@@ -3,6 +3,27 @@ const db = require('./databaseHandler.js');
 const router = express.Router();
 
 // endpoints ----------------------------
+router.get("/user/", async function(req, res, next) {
+	
+	let username = req.query["username"];
+	let sql= "SELECT * FROM todo";
+	console.log(username)
+	let info = db.getUser(username)
+	console.log((await info).rows)
+	let userid = await (await info).rows[0].id
+	
+	try{
+	//let result = await pool.query(sql);
+	let data = await db.getUserLists(userid);
+	console.log(data.rows)
+	res.status(200).json(data.rows).end();
+	}
+	catch(err){
+		//res.status(500).json({error: err}).end();
+		next(err);
+	}
+});
+
 router.get("/todo", async function(req, res, next) {
 
 	let sql= "SELECT * FROM todo";
@@ -33,7 +54,7 @@ router.post("/todoGetItems", async function(req, res, next){
 
 router.post("/todo", async function(req, res, next) {	
 	let updata = req.body;
-	let userid = 1; //must be changes when we implement users
+	let userid = 87; //must be changes when we implement users
 
 	
 
@@ -93,7 +114,7 @@ router.delete("/todo", async function(req, res, next) {
 
 	try{
 		//let result = await pool.query(sql, values);
-		//let data = await db.deleteTodoList(updata.id);
+		let data = await db.deleteTodoList(updata.id);
 
 		if(data.rows.length > 0){
 			res.status(200).json({msg: "The todolist was deleted successfully"}).end();
