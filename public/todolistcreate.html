@@ -23,6 +23,10 @@
    
     <br>
     <button id="btnFinishList" class="button">Finish list </button><br />
+    <br>
+    <br>
+    <a href="todolist.html"> find your list</a>
+    
 
     <!------------- JavaScript --------------->
 
@@ -35,34 +39,7 @@
       let btnFinishList = document.getElementById("btnFinishList");
     
 
-      /*btnFinishList.addEventListener("click", async function (evt) {
-        let url = "/todo";
-
-        let updata = {
-          listName: listName.value,
-          listItems: listItems.value,
-        };
-
-        let cfg = {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(updata),
-        };
-        try {
-          let response = await fetch(url, cfg);
-          let data = await response.json();
-          console.log(data);
-
-          if (response.status != 200) {
-            throw data.err;
-          }
-          txtResult.innerHTML = data.msg;
-        } catch (err) {
-          console.log(err);
-          txtResult.innerHTML =
-            "Something went wrong - check the console window";
-        }
-      });*/
+  
 
       btnAddToList.addEventListener("click", function(){
         let listItems = document.createElement("div")
