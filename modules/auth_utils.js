@@ -1,7 +1,8 @@
 const crypto = require("crypto");
 
 //the secret must be stored in an env variable in the finished app
-const secret = "appeksamen";
+const secret = process.env.SECRET || "stue"
+
 
 let utils = {};
 
@@ -20,6 +21,7 @@ utils.decodeCred = function(credString){
 
 //--------------------------
 utils.createHash = function(password){
+    console.log(secret)
 
     let hash = {};
     //let hash = createHash("appeksamen");
