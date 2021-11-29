@@ -6,20 +6,10 @@
     <title>TestClient</title>
 </head>
 <body>
-    <form>
-        <h2> Users log in</h2>
-        <label for="navn"><b>First name:</b></label>
-        <input type="text" id="fname" name="navn" placeholder="enter your firstname"><br>
-        <label for="fornavn" ><b>Last name:</b></label>
-        <input type="text" id="fornavn" name="fornavn" placeholder="enter your lastname"><br>
-        <label for="pasord"><b>Password:</b></label>
-        <input type="pasord" id="pasord"  placeholder="Enter Password" name =""><br>
-        <label for="repasord"><b>RepeatPassword:</b></label>
-        <input type="pasord" id="repasord" placeholder="RepeatPassword" name =""><br>
-        <input type="submit" value="submit">
-      </form>
- 
-        
+
+    <div id="container"></div> 
+
+
     <script>
         let container = document.getElementById('container');
         let inpHeading = document.getElementById('inpHeading');
@@ -29,9 +19,13 @@
   
          
         //-----------------------------------------------
-        async function listBlogPosts() {
+        //temporary user for testing
+        localStorage.setItem("username", "rubenr")
+        writeToDoList()
 
-            let url = "/users";            
+        async function writeToDoList() {
+            let user = localStorage.getItem("username")
+            let url = "/user/?username=" + user;         
 
             try {
                 let response = await fetch(url);
@@ -44,64 +38,128 @@
                 container.innerHTML = ""; //delete previous content
                 
                 for (let value of data) {
-
-                    let date = new Date(value.date);
-
-                    let html = "<h2>" + value.heading + "</h2>";
-                    html += "<p>" + date.toLocaleDateString() + "</p>";
-                    html += "<p>" + value.blogtext + "</p><hr>";
-
-                    let div = document.createElement("div");
-                    div.innerHTML = html;
-                    container.appendChild(div);
-
-                    let delbtn = document.createElement("button");
-                    delbtn.innerHTML = "Delete";
-
-                    delbtn.addEventListener('click', function(evt) {
-                        deleteBlogPost(value.id);
-                    });
-
-                    div.insertBefore(delbtn, div.lastElementChild);
-                }
+            let items;
+            console.log(value)
+            try{
+              items = await getListItems(value.id)
+            }catch(error){
+              console.log(error)
             }
-            catch(error) {
-                console.log(error);
+            let div = document.createElement("div");
+            let date = document.createElement("p");
+            console.log(value.date)
+            date.innerHTML = new Date(value.date).toLocaleDateString();
+            let listName = document.createElement("h2");
+            listName.innerHTML = value.listname;
+            div.appendChild(listName)
+            div.appendChild(date);
+            for(item of items){
+              let listItem = document.createElement("div")
+              listItem.innerHTML = item.item;
+              let delbtn = document.createElement("button");
+              delbtn.innerHTML = "Delete";
+              console.log(item.itemid)
+              let currentItemId = item.itemid
+              delbtn.addEventListener("click", function(evt){
+                //delete list item
+                deleteListItem(currentItemId)
+              })
+              listItem.appendChild(delbtn);
+              div.appendChild(listItem);
             }
+            let id = document.createElement("p");
+            id.innerHTML = value.id;
+            div.appendChild(id);
+
+            
+
+            container.appendChild(div);
+
+            let delbtn = document.createElement("button");
+            delbtn.innerHTML = "Delete";
+
+            delbtn.addEventListener("click", function (evt) {
+              deleteListElement(value.id);
+
+            });
+            div.insertBefore(delbtn, div.lastElementChild);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      async function getListItems(listID){
+        let url = "/todoGetItems"
+        let updata = {
+          id: listID
+        }
+        let cfg = {
+          method: "POST",
+          headers: {"content-type": "application/json"},
+          body: JSON.stringify(updata)
+        }
+        try{
+          let response = await fetch(url, cfg);
+          let data = await response.json();
+          console.log(data)
+          
+          if (response.status != 200) {
+            throw data.error;
+          }
+          return data;
+        }catch(error){
+          console.log(error);
         }
 
+      }
         //-----------------------------------------------
-        async function deleteBlogPost(blogpostId) {
+        async function deleteListElement(todolistid) {
+        let url = "/todo";
 
-            let url = "/users";
+        let updata = {
+          id: todolistid
+        };
+        let cfg = {
+          method: "DELETE",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(updata)
+        };
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
 
-            let updata = {
-                id: blogpostId
-            }
-
-            let cfg = {
-                method: "DELETE",
-                headers: {"content-type":"application/json"},
-                body: JSON.stringify(updata)
-            }           
-
-            try {                
-                let response = await fetch(url, cfg);               
-                let data = await response.json();
-                
-                if (response.status != 200) {
-                    throw data.error;
-                }
-                
-                listBlogPosts(); //refresh the list                
-            }
-            catch(error) {
-                console.log(error);
-                txtResult.innerHTML="something went wrong"
-            }  
+          if (response.status != 200) {
+            throw data.error;
+          }
+          writeToDoList(); //refresh the list
+        } catch (error) {
+          console.log(error);
         }
-        
-        // start ----------------------------------------
+      }
+      async function deleteListItem(listItemID) {
+        console.log("item deleted: " + listItemID)
+        let url = "/todoitem";
+
+        let updata = {
+          id: listItemID
+        };
+        let cfg = {
+          method: "DELETE",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(updata)
+        };
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
+
+          if (response.status != 200) {
+            throw data.error;
+          }
+          writeToDoList(); //refresh the list
+        } catch (error) {
+          console.log(error);
+        }
+      }
 
         //listBlogPosts();
         function createCredentialString(username, password){
