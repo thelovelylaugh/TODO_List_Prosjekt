@@ -1,4 +1,4 @@
-
+//------User Lists
 async function writeUserTodoList() {
     
     let user = localStorage.getItem("username")
@@ -138,7 +138,7 @@ try {
 }
 }
 
-//------global
+//------All Lists
 async function writeToDoList() {
   let url = "/todo";
 
@@ -204,77 +204,6 @@ async function writeToDoList() {
       });
       div.insertBefore(delbtn, div.lastElementChild);
     }
-  } catch (error) {
-    console.log(error);
-  }
-}
-async function getListItems(listID){
-  let url = "/todoGetItems"
-  let updata = {
-    id: listID
-  }
-  let cfg = {
-    method: "POST",
-    headers: {"content-type": "application/json"},
-    body: JSON.stringify(updata)
-  }
-  try{
-    let response = await fetch(url, cfg);
-    let data = await response.json();
-    console.log(data)
-    
-    if (response.status != 200) {
-      throw data.error;
-    }
-    return data;
-  }catch(error){
-    console.log(error);
-  }
-
-}
-async function deleteListElement(todolistid) {
-  let url = "/todo";
-
-  let updata = {
-    id: todolistid
-  };
-  let cfg = {
-    method: "DELETE",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(updata)
-  };
-  try {
-    let response = await fetch(url, cfg);
-    let data = await response.json();
-
-    if (response.status != 200) {
-      throw data.error;
-    }
-    writeToDoList(); //refresh the list
-  } catch (error) {
-    console.log(error);
-  }
-}
-async function deleteListItem(listItemID) {
-  console.log("item deleted: " + listItemID)
-  let url = "/todoitem";
-
-  let updata = {
-    id: listItemID
-  };
-  let cfg = {
-    method: "DELETE",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(updata)
-  };
-  try {
-    let response = await fetch(url, cfg);
-    let data = await response.json();
-
-    if (response.status != 200) {
-      throw data.error;
-    }
-    writeToDoList(); //refresh the list
   } catch (error) {
     console.log(error);
   }
