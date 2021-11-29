@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>TestClient</title>
+</head>
+<body>
+
+    <div id="container"></div> 
+
+
+    <script>
+        let container = document.getElementById('container');
+        let inpHeading = document.getElementById('inpHeading');
+        let inpBlogtext = document.getElementById('inpBlogtext');
+        let btnCreate = document.getElementById('btnCreate');
+        let txtResult = document.getElementById('txtResult');
+  
+         
+        //-----------------------------------------------
+        //temporary user for testing
+        localStorage.setItem("username", "rubenr")
+        writeToDoList()
+
+        async function writeToDoList() {
+            let user = localStorage.getItem("username")
+            let url = "/user/?username=" + user;         
+
+            try {
+                let response = await fetch(url);
+                let data = await response.json();
+                
+                if (response.status != 200) {
+                    throw data.error;
+                }
+
+                container.innerHTML = ""; //delete previous content
+                
+                for (let value of data) {
+            let items;
+            console.log(value)
+            try{
+              items = await getListItems(value.id)
+            }catch(error){
+              console.log(error)
+            }
+            let div = document.createElement("div");
+            let date = document.createElement("p");
+            console.log(value.date)
+            date.innerHTML = new Date(value.date).toLocaleDateString();
+            let listName = document.createElement("h2");
+            listName.innerHTML = value.listname;
+            div.appendChild(listName)
+            div.appendChild(date);
+            for(item of items){
+              let listItem = document.createElement("div")
+              listItem.innerHTML = item.item;
+              let delbtn = document.createElement("button");
+              delbtn.innerHTML = "Delete";
+              console.log(item.itemid)
+              let currentItemId = item.itemid
+              delbtn.addEventListener("click", function(evt){
+                //delete list item
+                deleteListItem(currentItemId)
+              })
+              listItem.appendChild(delbtn);
+              div.appendChild(listItem);
+            }
+            let id = document.createElement("p");
+            id.innerHTML = value.id;
+            div.appendChild(id);
+
+            
+
+            container.appendChild(div);
+
+            let delbtn = document.createElement("button");
+            delbtn.innerHTML = "Delete";
+
+            delbtn.addEventListener("click", function (evt) {
+              deleteListElement(value.id);
+
+            });
+            div.insertBefore(delbtn, div.lastElementChild);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      async function getListItems(listID){
+        let url = "/todoGetItems"
+        let updata = {
+          id: listID
+        }
+        let cfg = {
+          method: "POST",
+          headers: {"content-type": "application/json"},
+          body: JSON.stringify(updata)
+        }
+        try{
+          let response = await fetch(url, cfg);
+          let data = await response.json();
+          console.log(data)
+          
+          if (response.status != 200) {
+            throw data.error;
+          }
+          return data;
+        }catch(error){
+          console.log(error);
+        }
+
+      }
+        //-----------------------------------------------
+        async function deleteListElement(todolistid) {
+        let url = "/todo";
+
+        let updata = {
+          id: todolistid
+        };
+        let cfg = {
+          method: "DELETE",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(updata)
+        };
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
+
+          if (response.status != 200) {
+            throw data.error;
+          }
+          writeToDoList(); //refresh the list
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      async function deleteListItem(listItemID) {
+        console.log("item deleted: " + listItemID)
+        let url = "/todoitem";
+
+        let updata = {
+          id: listItemID
+        };
+        let cfg = {
+          method: "DELETE",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(updata)
+        };
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
+
+          if (response.status != 200) {
+            throw data.error;
+          }
+          writeToDoList(); //refresh the list
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+        //listBlogPosts();
+        function createCredentialString(username, password){
+            let combinedStr = username +":" + password;
+            let b64Str = btoa(combinedStr);
+            return "basic" + b64Str
+        }
+
+    </script>
+
+    <!---------------- CSS ------------------->
+    <style>        
+
+    </style>
+
+</body>
+
+</html>

@@ -1,68 +1,113 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todolistcreate</title>
-</head>
-<body>
 
+    <link rel="stylesheet" href="style.css">
+
+    
+  </head>
+  <body>
     <!----------- HTML-elements -------------->
-    <input id="inpHeading" type="text"/><br>
-    <textarea id="inpTodoList" cols="80" rows="10"></textarea><br>
-    <button id="btnAdd">Add to list</button><br>
-    <h3 id="txtResult">Result...</h3>
-        
+    <h2 id= "title" class="title">Name your list</h2>
+    <input id="listName" type="text" class="listItem" /><br />
+
+    <br>
+    
+    
+    <input id="listItem" type="text" class="listItem">
+    <button id="btnAddToList" class="button">Add to list</button>
+    <div id="container"></div>
+   
+    <br>
+    <button id="btnFinishList" class="button">Finish list </button><br />
+
     <!------------- JavaScript --------------->
+
+
     <script>
+      let listItem = document.getElementById("listItem");
+      let btnAddToList = document.getElementById("btnAddToList");
+      let container = document.getElementById("container")
+      let listName = document.getElementById("listName");
+      let btnFinishList = document.getElementById("btnFinishList");
+    
 
-        let inpHeading= document.getElementById('inpHeading');
-        let inpBlogtext= document.getElementById('inpBlogtext');
-        let btnAdd= document.getElementById('btnAdd');
-        let txtResult= document.getElementById('txtResult');
+      /*btnFinishList.addEventListener("click", async function (evt) {
+        let url = "/todo";
 
-        btnAdd.addEventListener('click', async function(evt) {
-            let url = "/grayrubiousmagyarosaurus";
+        let updata = {
+          listName: listName.value,
+          listItems: listItems.value,
+        };
 
-            let updata = {
-                heading: inpHeading.value,
-                blogtext: inpBlogtext.value
-            }
+        let cfg = {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(updata),
+        };
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
+          console.log(data);
 
-            let cfg = {
-                method:"POST", 
-                headers: {"content-type":"application/json"},
-                body: JSON.stringify(updata)
-            }
-            try{
-                let response = await fetch(url, cfg);
-                let data = await response.json();
-                
-                if(response.status != 200){
-                    throw data.err;
-                }
-                txtResult.innerHTML= data.msg;
-            }
-            catch (err){
-                console.log(err);
-                txtResult.innerHTML= "Something went wrong - check the console window";
-            }
-        });
+          if (response.status != 200) {
+            throw data.err;
+          }
+          txtResult.innerHTML = data.msg;
+        } catch (err) {
+          console.log(err);
+          txtResult.innerHTML =
+            "Something went wrong - check the console window";
+        }
+      });*/
+
+      btnAddToList.addEventListener("click", function(){
+        let listItems = document.createElement("div")
+        listItems.innerHTML = listItem.value;
         
-        
+        console.log(listItem.value)
 
+        container.appendChild(listItems)
+
+      });
+      btnFinishList.addEventListener("click", async function(){
+        let url = "/todo";
+        let items = {};
+        let info = container.childNodes;
+        let increment = 0;
+        info.forEach(function(item){
+          items[increment] = item.innerHTML;
+          increment++
+        })
+        let updata = {
+          listName: listName.value,
+          listItems: JSON.stringify(items)
+        };
+        let cfg = {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(updata),
+        };
+        try {
+          let response = await fetch(url, cfg);
+          let data = await response.json();
+          console.log(data);
+
+          if (response.status != 200) {
+            throw data.err;
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+      
     </script>
 
     <!---------------- CSS ------------------->
-    <style>        
 
-    #container > div > img{
-        max-width: 200px;
-        max-height: 200px;
-    }
-
-    </style>
-
-</body>
-
+    
+  </body> 
 </html>

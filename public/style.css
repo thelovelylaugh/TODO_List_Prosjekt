@@ -1,0 +1,93 @@
+<!---------------- CSS ------------------->
+
+h2.listitem {
+  margin: 0;
+  margin-left: 3px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: black;
+  background-color: rgb(170, 124, 97);
+}
+  #container > div > img {
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+ 
+
+     
+      a:link,
+     a:visited {
+    background-color: #0f0e0e;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 15px;
+  }
+
+  a:hover,
+  a:active {
+    background-color: rgb(102, 101, 101);
+  }
+
+  
+  .button:hover {
+    background-color: rgb(102, 101, 101);
+  }
+
+  .listframe{
+    margin: 50px;
+    max-width: 400px;
+    width: 100%;
+    background: rgb(201, 242, 235);
+    padding: 10px;
+    border: solid black 2px;
+    border-radius: 20px;
+    display: grid;
+    float: left;
+
+  }
+  .listitem{
+
+    background-color: rgb(142, 143, 143);
+    margin: 20px 0;
+    display: flex;
+    height: 30px;
+    padding: 10px; 
+    align-content: right; 
+    
+  }
+  .button {
+    background-color: #483bbb;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    border-radius: 10px;
+    align-content: right;
+    display: inline-block;
+    margin-left: auto;
+    
+  }
+  .right{
+    display: grid;
+    float: right;
+  }
+
+.deleteButton{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  justify-content: center;
+  background-color: #d25fd6;
+    color: black;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+    align-content: right;
+}
+
+.deleteButton:hover {
+  background-color: rgb(102, 101, 101);
+}
+ 
