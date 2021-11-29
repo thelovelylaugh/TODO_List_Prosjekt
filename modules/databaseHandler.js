@@ -61,12 +61,12 @@ dbMethods.deleteTodoListItem = function(id){
 
 
   //Users
- dbMethods.getAllUsers = function(){
+  dbMethods.getAllUsers = function(){
      let sql = "select * username From users ";
      return pool.query(sql);
  }
  //---------
-  dbMethods.getUser= function(username){
+   dbMethods.getUser= function(username){
       let sql = "select * From users WHERE username =$1";
       let values =[username];
       return pool.query(sql,values);

@@ -4,10 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-do list</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <!----------- HTML-elements -------------->
     <div id="container"></div>
+  
+    
 
     <!------------- JavaScript --------------->
     <script>
@@ -35,6 +38,8 @@
               console.log(error)
             }
             let div = document.createElement("div");
+            div.classList.add("listframe");
+            
             let date = document.createElement("p");
             console.log(value.date)
             date.innerHTML = new Date(value.date).toLocaleDateString();
@@ -45,8 +50,11 @@
             for(item of items){
               let listItem = document.createElement("div")
               listItem.innerHTML = item.item;
+              listItem.classList.add("listitem");
               let delbtn = document.createElement("button");
-              delbtn.innerHTML = "Delete";
+              delbtn.classList.add("button");
+              delbtn.classList.add("right");
+              delbtn.innerHTML = "Delete item";
               console.log(item.itemid)
               let currentItemId = item.itemid
               delbtn.addEventListener("click", function(evt){
@@ -60,12 +68,12 @@
             id.innerHTML = value.id;
             div.appendChild(id);
 
-            
-
             container.appendChild(div);
 
-            let delbtn = document.createElement("button");
-            delbtn.innerHTML = "Delete";
+            let delbtn = document.createElement("deleteButton");
+            delbtn.innerHTML = "Delete List";
+            delbtn.classList.add("deleteButton");
+            
 
             delbtn.addEventListener("click", function (evt) {
               deleteListElement(value.id);

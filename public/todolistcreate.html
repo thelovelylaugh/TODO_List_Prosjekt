@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todolistcreate</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    
   </head>
   <body>
     <!----------- HTML-elements -------------->
@@ -14,11 +18,11 @@
     
     
     <input id="listItem" type="text" class="listItem">
-    <button id="btnAddToList" class="btnAddToList">add item</button>
+    <button id="btnAddToList" class="button">Add to list</button>
     <div id="container"></div>
    
     <br>
-    <button id="btnFinishList">Finish list </button><br />
+    <button id="btnFinishList" class="button">Finish list </button><br />
 
     <!------------- JavaScript --------------->
 
@@ -63,6 +67,7 @@
       btnAddToList.addEventListener("click", function(){
         let listItems = document.createElement("div")
         listItems.innerHTML = listItem.value;
+        
         console.log(listItem.value)
 
         container.appendChild(listItems)
