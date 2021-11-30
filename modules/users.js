@@ -7,9 +7,21 @@ const router = express.Router();
 
 //user login -----------------------------------
 router.post("/users/login", async function(req, res, next) {
-    let username = req.body.username;
-    let password = req.body.password;
-    res.status(200).send("POST - /users/login = OK").end();
+    let token;
+
+    let credString = req.headers.authrization;
+    let cred = authUtils.decodeCred(credString);
+    let data = await (await db.getUser(cred.username)).rows[0]
+    
+    token = authUtils.verifyPassword(cred.password, data.password, data.salt)
+    let id;
+    if(token){
+        id = await (await db.verifyUser(data.username, data.password)).rows[0].id;
+        console.log(id)
+    }
+    
+
+    res.status(200).json({id: id}).end();
     
 });
 

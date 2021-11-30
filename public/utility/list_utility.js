@@ -4,8 +4,8 @@
 
 async function writeUserTodoList() {
     
-    let user = localStorage.getItem("username")
-    let url = "/user/?username=" + user;         
+    let user = localStorage.getItem("userid")
+    let url = "/user/?userid=" + user;         
 
     try {
         let response = await fetch(url);

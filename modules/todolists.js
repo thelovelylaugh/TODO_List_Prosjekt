@@ -5,12 +5,9 @@ const router = express.Router();
 // endpoints ----------------------------
 router.get("/user/", async function(req, res, next) {
 	
-	let username = req.query["username"];
+	let userid = req.query["userid"];
 	let sql= "SELECT * FROM todo";
-	console.log(username)
-	let info = db.getUser(username)
-	console.log((await info).rows)
-	let userid = await (await info).rows[0].id
+
 	
 	try{
 	//let result = await pool.query(sql);
