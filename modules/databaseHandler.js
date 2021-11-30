@@ -85,6 +85,12 @@ dbMethods.deleteTodoListItem = function(id){
        return pool.query(sql, values);
    }
 
+   dbMethods.verifyUser = function(username, password){
+       let sql = "SELECT * FROM users WHERE username = $1 AND password = $2";
+       let values = [username,password]
+       return pool.query(sql, values)
+   }
+
 
 
 // export dbMethods ---------------------
