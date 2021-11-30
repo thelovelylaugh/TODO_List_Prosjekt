@@ -7,6 +7,8 @@ const router = express.Router();
 
 //user login -----------------------------------
 router.post("/users/login", async function(req, res, next) {
+    let username = req.body.username;
+    let password = req.body.password;
     res.status(200).send("POST - /users/login = OK").end();
     
 });

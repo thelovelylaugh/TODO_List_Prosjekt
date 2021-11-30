@@ -25,11 +25,11 @@ utils.createHash = function(password){
 
     let hash = {};
     //let hash = createHash("appeksamen");
-    console.log(hash);
+  
 
     hash.salt = Math.random().toString();
     hash.value = crypto.scryptSync(password, hash.salt, 64).toString("hex");
-    console.log(hash);
+   
 
     return hash;
 
