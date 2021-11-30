@@ -1,12 +1,21 @@
 <!---------------- CSS ------------------->
+
 #body  
 {  
-    background-color: blue;
+    background-color: blue; 
+
     margin: 0;  
     padding: 0;  
     background-color:#6abadeba;  
     font-family: 'Arial';  
 }
+
+
+h2{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-large;
+  color:rgb(200, 227, 212)
+ 
 
 h1{
   font-family: Arial, Helvetica, sans-serif;
@@ -14,11 +23,6 @@ h1{
   color:black;
 }
 
-h2{
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: x-large;
-  color:rgb(200, 245, 231);
-}
 
 
 h2.listitem {
@@ -66,9 +70,11 @@ h2.listitem {
     
   }
   .button {
+
     background-color: rgb(200, 227, 212);
     border-color: rgb(177, 202, 188);
     color:black;
+
     padding: 5px 20px;
     text-align: center;
     border-radius: 10px;
@@ -79,12 +85,13 @@ h2.listitem {
   }
 
   .button:hover {
+
     background-color: rgb(206, 235, 219);
+
   }
 
   #btnLogIn{
     margin-left: 8x;
-
   
   }
 
@@ -111,10 +118,12 @@ h2.listitem {
 }
 
 #uname{
+
   background-color: rgb(200, 227, 212);
   padding: 5px 5px;
   text-align: center;
   border-color:rgb(200, 245, 231);
+
   align-content: right;
   position: sticky;
   display: inline-block;
@@ -129,7 +138,9 @@ h2.listitem {
   background-color: rgb(200, 227, 212);
   padding: 5px 5px;
   text-align: center;
+
   border-color:rgb(200, 245, 231);
+
   align-content: right;
   display: inline-block;
   margin-top: 5px ;
@@ -137,12 +148,15 @@ h2.listitem {
   margin-left: 8px;
   border-radius: 5px;
   margin-top: 5px;
+
+  text-decoration-color: rgb(200, 227, 212);
+
+
 }
 
 label{
   font-family: Arial, Helvetica, sans-serif;
   font-size: medium;
-  color:rgb(200, 245, 231);
 }
 
 form{
@@ -153,9 +167,11 @@ form{
   border-radius: 5px;
   padding-top:2%;
   padding-left: 15px;
-  
+ 
 }
 
 .container{
 
+
 }
+
