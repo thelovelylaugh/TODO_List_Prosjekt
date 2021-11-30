@@ -1,11 +1,15 @@
 <!---------------- CSS ------------------->
-body  
+
+#body  
 {  
+    background-color: blue; 
+
     margin: 0;  
     padding: 0;  
     background-color:#6abadeba;  
     font-family: 'Arial';  
 }
+
 
 h2{
   font-family: Arial, Helvetica, sans-serif;
@@ -13,8 +17,12 @@ h2{
   color:rgb(200, 227, 212)
  
 
-
+h1{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-large;
+  color:black;
 }
+
 
 
 h2.listitem {
@@ -30,17 +38,6 @@ h2.listitem {
     max-width: 200px;
     max-height: 200px;
   }
-  
-     a:link,
-     a:visited {
-    background-color: #0f0e0e;
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 15px;
-  }
 
   a:hover,
   a:active {
@@ -54,7 +51,7 @@ h2.listitem {
     margin: 50px;
     max-width: 400px;
     width: 100%;
-    background: rgb(201, 242, 235);
+    background: rgb(135, 170, 170);
     padding: 10px;
     border: solid black 2px;
     border-radius: 20px;
@@ -73,9 +70,11 @@ h2.listitem {
     
   }
   .button {
-    background-color: rgb(203, 241, 245);
-    border-color: rgb(222, 252, 252);
-    color: black;
+
+    background-color: rgb(200, 227, 212);
+    border-color: rgb(177, 202, 188);
+    color:black;
+
     padding: 5px 20px;
     text-align: center;
     border-radius: 10px;
@@ -86,7 +85,9 @@ h2.listitem {
   }
 
   .button:hover {
-    background-color: rgb(222, 252, 252);
+
+    background-color: rgb(206, 235, 219);
+
   }
 
   #btnLogIn{
@@ -102,7 +103,7 @@ h2.listitem {
 .deleteButton{
   font-family: Arial, Helvetica, sans-serif;
   justify-content: center;
-  background-color: #d25fd6;
+  background-color: rgb(200, 227, 212);
     color: black;
     padding: 5px 5px;
     text-align: center;
@@ -117,10 +118,12 @@ h2.listitem {
 }
 
 #uname{
-  background-color: rgb(222, 252, 252);
+
+  background-color: rgb(200, 227, 212);
   padding: 5px 5px;
   text-align: center;
-  border-color:white;
+  border-color:rgb(200, 245, 231);
+
   align-content: right;
   position: sticky;
   display: inline-block;
@@ -135,7 +138,9 @@ h2.listitem {
   background-color: rgb(200, 227, 212);
   padding: 5px 5px;
   text-align: center;
-  border-color:white;
+
+  border-color:rgb(200, 245, 231);
+
   align-content: right;
   display: inline-block;
   margin-top: 5px ;
@@ -143,6 +148,7 @@ h2.listitem {
   margin-left: 8px;
   border-radius: 5px;
   margin-top: 5px;
+
   text-decoration-color: rgb(200, 227, 212);
 
 
@@ -161,7 +167,11 @@ form{
   border-radius: 5px;
   padding-top:2%;
   padding-left: 15px;
-  
+ 
 }
 
+.container{
+
+
+}
 
