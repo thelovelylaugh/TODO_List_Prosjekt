@@ -1,6 +1,6 @@
 //------User Lists
 
-<div class= "background"></div>
+
 async function writeUserTodoList() {
     
     let user = localStorage.getItem("username")
@@ -25,6 +25,7 @@ async function writeUserTodoList() {
       console.log(error)
     }
     let div = document.createElement("div");
+    //div.classList.add("background")
     let date = document.createElement("p");
     console.log(value.date)
     date.innerHTML = new Date(value.date).toLocaleDateString();
