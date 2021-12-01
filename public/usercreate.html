@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>TestClient</title>
+    <title>User create</title>
+
+    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
 
     <!----------- HTML-elements -------------->    
     <h1>Create new user</h1>
-    <input id="inpUsername" type="text" placeholder="User name" />
-    <input id="inpPassword" type="text" placeholder="Password" /><br><br>
+    <input id="inpUsername" type="text" placeholder="Username" />
+    <input id="inpPassword" type="password" value="FakePSW" placeholder="Password" id="myInput"/><br><br>
+    <input type="checkbox" onclick="showPassword()">Show Password <br/><br/>
     
-    <button id="btnCreate">Create user</button><br>
-    <h3 id="txtResult">Result...</h3>
+    <button id="btnCreate" class="button">Create user</button><br>
+    <h3 id="txtResult"></h3>
         
     
-    <a href="todolistcreate.html"> Create a new list</a>
+    <a href="todolistcreate.html" class="button"> Create a new list</a>
     <!------------- JavaScript --------------->
     <script>
         
@@ -26,6 +30,14 @@
         let txtResult = document.getElementById('txtResult');
 
         // --------------------------------------
+     function showPassword(){
+         if(inpPassword.type === "password"){
+             inpPassword.type = "text"
+         } else {
+             inpPassword.type = "password"
+         }
+     }
+
         btnCreate.addEventListener('click', async function(evt) {
             
             let url = "/users";
