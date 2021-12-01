@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>TestClient</title>
+    <title>User Lists</title>
 </head>
 <body>
 
@@ -12,17 +12,14 @@
 <script src="./utility/list_utility.js"></script>
     <script>
         let container = document.getElementById('container');
-        let inpHeading = document.getElementById('inpHeading');
-        let inpBlogtext = document.getElementById('inpBlogtext');
-        let btnCreate = document.getElementById('btnCreate');
-        let txtResult = document.getElementById('txtResult');
+
   
          
         //-----------------------------------------------
         //temporary user for testing
-        localStorage.setItem("username", "rubenr")
+    
         writeUserTodoList()
-        //listBlogPosts();
+
         function createCredentialString(username, password){
             let combinedStr = username +":" + password;
             let b64Str = btoa(combinedStr);

@@ -1,8 +1,11 @@
 //------User Lists
+
+
+
 async function writeUserTodoList() {
     
-    let user = localStorage.getItem("username")
-    let url = "/user/?username=" + user;         
+    let user = localStorage.getItem("userid")
+    let url = "/user/?userid=" + user;         
 
     try {
         let response = await fetch(url);
@@ -23,6 +26,7 @@ async function writeUserTodoList() {
       console.log(error)
     }
     let div = document.createElement("div");
+    //div.classList.add("background")
     let date = document.createElement("p");
     console.log(value.date)
     date.innerHTML = new Date(value.date).toLocaleDateString();
