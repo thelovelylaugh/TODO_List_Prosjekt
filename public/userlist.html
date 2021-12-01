@@ -7,13 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <a href="todolistcreate.html" class="button" >Create a new list</a>
+    <a id="logout" href="index.html" class="button">Log Out</a>
     <div id="container"></div> 
 
 <script src="./utility/list_utility.js"></script>
     <script>
         let container = document.getElementById('container');
-
+        let logout = document.getElementById("logout")
+        logout.addEventListener("click", function(){
+            localStorage.setItem("token", "")
+        })
   
          
         //-----------------------------------------------
