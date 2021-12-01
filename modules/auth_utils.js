@@ -1,7 +1,7 @@
 const crypto = require("crypto");
 
-
-const secret = process.env.SECRET || "voksendinosaur"
+//the secret must be stored in an env variable in the finished app
+const secret = process.env.SECRET || "stue"
 
 
 let utils = {};
@@ -49,6 +49,7 @@ utils.createToken = function(username, userID) {
     let openPart = b64Part1 + "." + b64Part2;
 
     //create the 3. part (signature) using a hash-function in the crypto-module
+    let secret = "appeksamen"; //must be stored in an env variable in the finished app
     let sign = crypto.createHmac("SHA256", secret).update(openPart).digest("base64");
 
     return openPart + "." + sign;
@@ -57,6 +58,7 @@ utils.createToken = function(username, userID) {
 
 //---------------------------
 utils.verifyToken = function(token){
+    //let token = createToken("anita");
 
     //using the string-method split to extract the three parts into an array
     let tokenArr = token.split(".");

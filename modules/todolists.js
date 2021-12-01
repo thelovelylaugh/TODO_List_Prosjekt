@@ -8,6 +8,7 @@ router.post("/user/", async function(req, res, next) {
 	
 	let token = req.body.token;
 	let valid = authUtils.verifyToken(token);
+	console.log(valid)
 	console.log("token: " + token + " valid: " + Object.keys( valid))
 	let userid = valid.userId;
 	console.log(userid)
