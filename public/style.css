@@ -1,29 +1,22 @@
-<!---------------- CSS ------------------->
 
-#body  
-{  
-    background-color: blue; 
-
-    margin: 0;  
-    padding: 0;  
-    background-color:#6abadeba;  
-    font-family: 'Arial';  
-}
-
-
-h2{
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: x-large;
-  color:rgb(200, 227, 212)
+body{
+  background-color: rgb(243, 240, 215);
+  background-image: linear-gradient(to right, rgb(243, 240, 215) , rgb(255, 191, 134));
 }
 
 h1{
   font-family: Arial, Helvetica, sans-serif;
   font-size: x-large;
+
   color:black;
 }
 
-
+h2{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-large;
+  color:black;
+}
+ 
 
 h2.listitem {
   margin: 0;
@@ -44,9 +37,6 @@ h2.listitem {
     background-color: rgb(102, 101, 101);
   }
 
-  
-  
-
   .listframe{
     margin: 50px;
     max-width: 400px;
@@ -60,39 +50,35 @@ h2.listitem {
 
   }
   .listItem{
-    background-color: rgb(166, 227, 233);
-    
+
+    background-color: rgb(200, 227, 212);
+
     height: 20px;
     padding: 5px; 
     align-content: right; 
-    border-color:rgb(166, 227, 233); 
-  
+    border-color:rgb(200, 227, 212) 
     
   }
   .button {
-
     background-color: rgb(200, 227, 212);
-    border-color: rgb(177, 202, 188);
+    border-color: rgb(206, 229, 208);
+    font-size: medium;
     color:black;
-
-    padding: 5px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px 10px;
     text-align: center;
     border-radius: 10px;
     align-content: right;
     display: inline-block;
     margin-left: auto;
-  
   }
 
   .button:hover {
-
-    background-color: rgb(206, 235, 219);
-
+    background-color: rgb(140, 179, 170);
   }
 
   #btnLogIn{
     margin-left: 8x;
-  
   }
 
   .right{
@@ -114,23 +100,19 @@ h2.listitem {
 }
 
 .deleteButton:hover {
-  background-color: rgb(102, 101, 101);
+  background-color: rgb(140, 179, 170);
 }
 
 #uname{
-
   background-color: rgb(200, 227, 212);
   padding: 5px 5px;
   text-align: center;
   border-color:rgb(200, 245, 231);
-
   align-content: right;
   position: sticky;
   display: inline-block;
   border-radius: 5px;
-  margin-bottom: 5px;
-  margin-left: 5px;
-  margin-top: 5px;
+  margin: 5px 5px 5px 5px;
 }
 
 
@@ -138,18 +120,11 @@ h2.listitem {
   background-color: rgb(200, 227, 212);
   padding: 5px 5px;
   text-align: center;
-
   border-color:rgb(200, 245, 231);
-
   align-content: right;
   display: inline-block;
-  margin-top: 5px ;
-  margin-bottom: 10px;
-  margin-left: 8px;
+  margin: 5px 5px 5px 5px;
   border-radius: 5px;
-  margin-top: 5px;
-
-  text-decoration-color: rgb(200, 227, 212);
 
 
 }
@@ -161,17 +136,22 @@ label{
 
 form{
   background-color:rgb(137, 181, 175);
-  height: 200px;
+  height: 180px;
   width: 300px;
+  align-content: center;
   min-width: 100px;
   border-radius: 5px;
-  padding-top:2%;
-  padding-left: 15px;
- 
+  padding: 5px 0px 10px 20px;
+  
 }
 
-.container{
 
-
+input{
+background-color:rgb(200, 227, 212);
+border-color:rgb(200, 227, 212);
+border-radius: 5px;
+padding: 5px 5px 5px;
 }
+
+
 

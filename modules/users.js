@@ -7,22 +7,29 @@ const router = express.Router();
 
 //user login -----------------------------------
 router.post("/users/login", async function(req, res, next) {
-    let token;
-
+    
+    
+   try{ 
     let credString = req.headers.authrization;
+
+    
     let cred = authUtils.decodeCred(credString);
+
+    
     let data = await (await db.getUser(cred.username)).rows[0]
     
-    token = authUtils.verifyPassword(cred.password, data.password, data.salt)
+    let token = authUtils.verifyPassword(cred.password, data.password, data.salt)
+    
     let id;
     if(token){
         id = await (await db.verifyUser(data.username, data.password)).rows[0].id;
-        console.log(id)
+        
     }
-    
-
+    console.log(id)
     res.status(200).json({id: id}).end();
-    
+}catch(err){
+    console.log(err)
+}
 });
 
 //list all users -------------------------------

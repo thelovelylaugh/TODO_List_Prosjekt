@@ -18,21 +18,24 @@
     <h1>To do list prosjekt </h1>
     <a href="todolist.html" class="button"> To do list</a>
     <a href="todolistcreate.html" class="button" >Create a new list</a>
-    <a href="usercreate.html" class="button">Create a new user</a>
+    
      
       <div class="container- signup">
          <h1> Sign Up</h1>
          <form action="" class="signup">
         <label for="user"><b>Username</b></label>
         <input type="text" id="user" placeholder=" Enter username" required>
+
         <p></p>
         <label for="password"><b> Password</b></label>
         <input type="text" id="password" placeholder="Enter password" required><br>
         <p></p>
         
         <p></p>
-        <button id="btnLogin" class="button"><b>Login</b></button>
-        <a href="todolistcreate.html" class="button"><b>Submit</b></a>
+
+        <button id="btnLogin">login</button>
+        <a href="usercreate.html" class="button">Create a new user</a>
+
          </form>
 
       </div>
@@ -45,23 +48,28 @@
         const btnLogin = document.getElementById("btnLogin");
         btnLogin.addEventListener("click", login);
 
-        async function login(){
+        
+        
+        
+        
+        async function login(evt){
+
+            evt.preventDefault();
             let url = "/users/login"
             let credString = createCredentialString(user.value, password.value)
 
             let cfg = {
                 method: "POST",
-                headers: {"content-type": "application/json", "authrization": credString},
+                headers: {"content-type": "application/json", "authrization": credString}
                 
             };
 
             try{
-                response = await fetch(url, cfg);
+                let response = await fetch(url, cfg);
+                console.log(response)
                 let data = await response.json();
-
-                localStorage.setItem("userid", data.id)
-                
-                console.log(data);
+                localStorage.setItem("userid", data.id);
+                location.assign("/todolistcreate.html");
 
             }catch(err){
                 console.log(err)
