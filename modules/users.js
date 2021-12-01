@@ -24,6 +24,7 @@ router.post("/users/login", async function(req, res, next) {
     if(correctPassword){
         user = await (await db.verifyUser(data.username, data.password)).rows[0];
         token = authUtils.createToken(user.username, user.id)
+        console.log(token)
     }
     console.log(user.id)
     res.status(200).json({token: token}).end();
