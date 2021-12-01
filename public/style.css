@@ -7,7 +7,6 @@ body{
 h1{
   font-family: Arial, Helvetica, sans-serif;
   font-size: x-large;
-
   color:black;
 }
 
@@ -30,7 +29,6 @@ h2.listitem {
   #container > div > img {
     max-width: 200px;
     max-height: 200px;
-    
   }
 
   a:hover,
@@ -38,11 +36,14 @@ h2.listitem {
     background-color: rgb(102, 101, 101);
   }
 
+  a{
+    text-decoration: none;
+  }
+
   .listframe{
     margin: 50px;
-    width: 400px;
-    max-height: fit-content;
-    height: 100%;
+    max-width: 400px;
+    width: 100%;
     background: rgb(135, 170, 170);
     padding: 10px;
     border: solid black 2px;
@@ -52,9 +53,7 @@ h2.listitem {
 
   }
   .listItem{
-
     background-color: rgb(200, 227, 212);
-
     height: 20px;
     padding: 5px; 
     align-content: right; 
@@ -93,13 +92,12 @@ h2.listitem {
   justify-content: center;
   background-color: rgb(200, 227, 212);
     color: black;
-    padding: 5px 5px;
+    padding: 10px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     border-radius: 10px;
     align-content: right;
-    max-height: 20px;
 }
 
 .deleteButton:hover {
@@ -148,13 +146,11 @@ form{
   
 }
 
-
 input{
 background-color:rgb(200, 227, 212);
 border-color:rgb(200, 227, 212);
 border-radius: 5px;
 padding: 5px 5px 5px;
 }
-
 
 
