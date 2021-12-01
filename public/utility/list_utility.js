@@ -3,7 +3,7 @@
 
 
 async function writeUserTodoList() {
-    
+    //temporary user for testing
     let user = localStorage.getItem("userid")
     let url = "/user/?userid=" + user;         
 
