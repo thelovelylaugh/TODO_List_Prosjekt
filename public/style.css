@@ -4,6 +4,11 @@ body{
   background-image: linear-gradient(to right, rgb(243, 240, 215) , rgb(255, 191, 134));
 }
 
+h1{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-large;
+  color:black;
+}
 
 h2{
   font-family: Arial, Helvetica, sans-serif;
@@ -11,14 +16,6 @@ h2{
   color:black;
 }
  
-
-h1{
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: x-large;
-  color:black;
-}
-
-
 
 h2.listitem {
   margin: 0;
@@ -39,9 +36,6 @@ h2.listitem {
     background-color: rgb(102, 101, 101);
   }
 
-  
-  
-
   .listframe{
     margin: 50px;
     max-width: 400px;
@@ -60,7 +54,6 @@ h2.listitem {
     padding: 5px; 
     align-content: right; 
     border-color:rgb(200, 227, 212) 
-  
     
   }
   .button {
@@ -75,18 +68,14 @@ h2.listitem {
     align-content: right;
     display: inline-block;
     margin-left: auto;
-
   }
 
   .button:hover {
-
     background-color: rgb(140, 179, 170);
-
   }
 
   #btnLogIn{
     margin-left: 8x;
-  
   }
 
   .right{
@@ -112,19 +101,15 @@ h2.listitem {
 }
 
 #uname{
-
   background-color: rgb(200, 227, 212);
   padding: 5px 5px;
   text-align: center;
   border-color:rgb(200, 245, 231);
-
   align-content: right;
   position: sticky;
   display: inline-block;
   border-radius: 5px;
-  margin-bottom: 5px;
-  margin-left: 5px;
-  margin-top: 5px;
+  margin: 5px 5px 5px 5px;
 }
 
 
@@ -135,10 +120,7 @@ h2.listitem {
   border-color:rgb(200, 245, 231);
   align-content: right;
   display: inline-block;
-  margin-top: 5px ;
-  margin-bottom: 10px;
-  margin-left: 8px;
-  margin-top: 5px;
+  margin: 5px 5px 5px 5px;
   border-radius: 5px;
 
 
