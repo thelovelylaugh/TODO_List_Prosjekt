@@ -69,7 +69,7 @@ async function writeUserTodoList() {
 
     container.appendChild(div);
 
-    let delbtn = document.createElement("button");
+    let delbtn = document.createElement("deleteButton");
     delbtn.innerHTML = "Delete List";
     delbtn.classList.add("deleteButton");
 
@@ -218,6 +218,7 @@ async function writeToDoList() {
 
       delbtn.addEventListener("click", function (evt) {
         deleteListElement(value.id);
+        writeToDoList()
 
       });
       div.insertBefore(delbtn, div.lastElementChild);
