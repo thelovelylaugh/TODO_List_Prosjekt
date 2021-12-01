@@ -6,7 +6,6 @@
     <title>Index </title>
 
     <link rel="stylesheet" href="style.css">
-    <i class="fas fa-trash-alt"></i> <!-- bruke denne istedenfor delete knapp??-->
     
     
 </head>
@@ -65,7 +64,7 @@
                 let response = await fetch(url, cfg);
                 console.log(response)
                 let data = await response.json();
-                localStorage.setItem("userid", data.id);
+                localStorage.setItem("token", data.token);
                 location.assign("/todolistcreate.html");
 
             }catch(err){
