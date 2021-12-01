@@ -1,7 +1,7 @@
 const crypto = require("crypto");
 
 //the secret must be stored in an env variable in the finished app
-const secret = process.env.SECRET || "stue"
+const secret = process.env.SECRET || "voksendinosaur"
 
 
 let utils = {};
@@ -9,12 +9,10 @@ let utils = {};
 //--------------------------
 utils.decodeCred = function(credString){
     let cred = {};
-
-	let b64String = credString.replace("basic", ""); // 
-	let asciiString = Buffer.from(b64String, "base64").toString("ascii"); // 'anita:appeksamen'	
-	cred.username = asciiString.replace(/:.*/, ""); //anita	
-	cred.password = asciiString.replace(cred.username + ":", ""); //appeksamen
-
+	let b64String = credString.replace("basic", "");
+	let asciiString = Buffer.from(b64String, "base64").toString("ascii"); 	
+	cred.username = asciiString.replace(/:.*/, ""); 	
+	cred.password = asciiString.replace(cred.username + ":", ""); 
 	return cred;
 
 }
@@ -22,11 +20,7 @@ utils.decodeCred = function(credString){
 //--------------------------
 utils.createHash = function(password){
     console.log(secret)
-
     let hash = {};
-    
-  
-
     hash.salt = Math.random().toString();
     hash.value = crypto.scryptSync(password, hash.salt, 64).toString("hex");
    
@@ -49,7 +43,6 @@ utils.createToken = function(username, userID) {
     let openPart = b64Part1 + "." + b64Part2;
 
     //create the 3. part (signature) using a hash-function in the crypto-module
-    let secret = "appeksamen"; //must be stored in an env variable in the finished app
     let sign = crypto.createHmac("SHA256", secret).update(openPart).digest("base64");
 
     return openPart + "." + sign;
@@ -58,14 +51,11 @@ utils.createToken = function(username, userID) {
 
 //---------------------------
 utils.verifyToken = function(token){
-    //let token = createToken("anita");
 
-    //using the string-method split to extract the three parts into an array
     let tokenArr = token.split(".");
     let openPart = tokenArr[0] + "." + tokenArr[1];
     let checkSignature = tokenArr[2];
 
-    let secret = "appeksamen";
     let sign = crypto.createHmac("SHA256", secret).update(openPart).digest("base64");
 
     if (checkSignature != sign){
