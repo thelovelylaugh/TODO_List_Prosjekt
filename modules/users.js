@@ -18,15 +18,15 @@ router.post("/users/login", async function(req, res, next) {
     
     let data = await (await db.getUser(cred.username)).rows[0]
     
-    let token = authUtils.verifyPassword(cred.password, data.password, data.salt)
+    let correctPassword = authUtils.verifyPassword(cred.password, data.password, data.salt)
     
-    let id;
-    if(token){
-        id = await (await db.verifyUser(data.username, data.password)).rows[0].id;
-        
+    let token;
+    if(correctPassword){
+        user = await (await db.verifyUser(data.username, data.password)).rows[0];
+        token = authUtils.createToken(user.username, user.id)
     }
-    console.log(id)
-    res.status(200).json({id: id}).end();
+    console.log(user.id)
+    res.status(200).json({token: token}).end();
 }catch(err){
     console.log(err)
 }

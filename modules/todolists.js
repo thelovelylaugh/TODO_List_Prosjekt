@@ -1,11 +1,17 @@
 const express = require('express');
 const db = require('./databaseHandler.js');
+const authUtils = require("./auth_utils.js");
 const router = express.Router();
 
 // endpoints ----------------------------
-router.get("/user/", async function(req, res, next) {
+router.post("/user/", async function(req, res, next) {
 	
-	let userid = req.query["userid"];
+	let token = req.body.token;
+	let valid = authUtils.verifyToken(token);
+	console.log("token: " + token + " valid: " + Object.keys( valid))
+	let userid = valid.userId;
+	console.log(userid)
+
 	let sql= "SELECT * FROM todo";
 
 	
@@ -51,7 +57,11 @@ router.post("/todoGetItems", async function(req, res, next){
 
 router.post("/todo", async function(req, res, next) {	
 	let updata = req.body;
-	let userid = 87; //must be changes when we implement users
+	let token = updata.token;
+	console.log("token: "+token)
+	let valid = authUtils.verifyToken(token)
+	console.log("valid: "+Object.keys(valid))
+	let userid = valid.userId;
 
 	
 

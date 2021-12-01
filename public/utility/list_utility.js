@@ -3,13 +3,23 @@
 
 
 async function writeUserTodoList() {
-    //temporary user for testing
-    let user = localStorage.getItem("userid")
-    let url = "/user/?userid=" + user;         
+    let token = localStorage.getItem("token")
+    let url = "/user/";
+    let updata = {
+      token: token
+    }
+    let cfg = {
+      method: "POST",
+      headers: {"content-type": "application/json"},
+      body: JSON.stringify(updata)
+    }
 
     try {
-        let response = await fetch(url);
+      
+        let response = await fetch(url, cfg);
         let data = await response.json();
+        console.log(data)
+        
         
         if (response.status != 200) {
             throw data.error;
@@ -26,7 +36,7 @@ async function writeUserTodoList() {
       console.log(error)
     }
     let div = document.createElement("div");
-    //div.classList.add("background")
+    div.classList.add("listframe");
     let date = document.createElement("p");
     console.log(value.date)
     date.innerHTML = new Date(value.date).toLocaleDateString();
@@ -37,8 +47,11 @@ async function writeUserTodoList() {
     for(item of items){
       let listItem = document.createElement("div")
       listItem.innerHTML = item.item;
+      listItem.classList.add("listitem");
       let delbtn = document.createElement("button");
-      delbtn.innerHTML = "Delete";
+      delbtn.classList.add("button");
+      delbtn.classList.add("right");
+      delbtn.innerHTML = "Delete item";
       console.log(item.itemid)
       let currentItemId = item.itemid
       delbtn.addEventListener("click", function(evt){
@@ -57,7 +70,8 @@ async function writeUserTodoList() {
     container.appendChild(div);
 
     let delbtn = document.createElement("button");
-    delbtn.innerHTML = "Delete";
+    delbtn.innerHTML = "Delete List";
+    delbtn.classList.add("deleteButton");
 
     delbtn.addEventListener("click", function (evt) {
       deleteListElement(value.id);

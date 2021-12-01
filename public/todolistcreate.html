@@ -25,7 +25,8 @@
     <button id="btnFinishList" class="button">Finish list </button><br />
     <br>
     <br>
-    <a href="todolist.html" class="button"> Find your list </a> 
+
+    <a href="userlist.html" class="button"> find your list </a> 
 
 
 
@@ -61,6 +62,7 @@
           increment++
         })
         let updata = {
+          token: localStorage.getItem("token"),
           listName: listName.value,
           listItems: JSON.stringify(items)
         };
