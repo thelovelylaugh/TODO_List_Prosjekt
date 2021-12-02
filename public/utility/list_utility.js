@@ -150,7 +150,7 @@ try {
   if (response.status != 200) {
     throw data.error;
   }
-  writeToDoList(); //refresh the list
+  writeUserTodoList(); //refresh the list
 } catch (error) {
   console.log(error);
 }
